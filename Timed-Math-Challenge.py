@@ -91,7 +91,7 @@ class App(Tk):
         except ValueError:
             print("That's invalid number.")
             messagebox.showerror("Error", "That's invalid number.")
-            
+    # Hide the true_false label
     def hide(self):
         self.true_false_answer_label.config(text='')
     # Generate Math Problems
