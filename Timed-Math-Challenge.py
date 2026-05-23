@@ -33,6 +33,10 @@ class App(Tk):
         self.submit_button = Button(self,text='Submit', font=('Helvetica', 15), width=10,bg='#d9ffcc', command=self.check)
         self.submit_button.pack(pady=10)
         
+        # True_False Label
+        self.true_false_answer_label = Label(self, text='', font=('Helvetica', 17), fg='red', bg="#ccffff")
+        self.true_false_answer_label.pack(pady=10)
+
         # Variables
         self.problem_count = 1
         self.wrong = 0
@@ -58,11 +62,19 @@ class App(Tk):
                     if user_numeric_answer == self.answer:
                             self.problem_count += 1
                             print("correct!")
+                            # Display 'Correct' label
+                            self.true_false_answer_label.config(text='Correct!')
+                            # 'Correct' label disappear after 0.8 second
+                            self.true_false_answer_label.after(800, self.hide)
                             self.user_entry.delete(0, END)
                             self.generate_problems()
                             self.update_ui()
                     else:                           
                         print("Incorrect. Try again!")
+                        # Display 'Incorrect' label
+                        self.true_false_answer_label.config(text="Incorrect. Please try again!")
+                        # 'Incorrect' label disapper after 0.8 second
+                        self.true_false_answer_label.after(800, self.hide)
                         self.user_entry.delete(0, END)
                         self.wrong += 1
                 else:
@@ -72,7 +84,7 @@ class App(Tk):
                     self.user_entry.config(state="disabled")
                     self.submit_button.config(state="disabled")
                     messagebox.showinfo(title="Finish", 
-                                        message=f"Congratulations! You conquered the challenge in {self.total_time} seconds.\nTotal wrong answer: {self.wrong}.\nTotal correct answer:{10 - self.wrong}.")
+                                        message=f"Congratulations! You conquered the challenge in {self.total_time} seconds.\nTotal wrong attempt: {self.wrong}.\nTotal correct attempt:{10 - self.wrong}.")
                     print(f'Total time: {self.total_time} seconds')
                     self.destroy()
         # Catch invalid number and non number characters
@@ -80,6 +92,8 @@ class App(Tk):
             print("That's invalid number.")
             messagebox.showerror("Error", "That's invalid number.")
             
+    def hide(self):
+        self.true_false_answer_label.config(text='')
     # Generate Math Problems
     def generate_problems(self):
         self.left = random.randint(3, 12)
