@@ -24,9 +24,11 @@ An interactive, graphical desktop application built with Python and Tkinter desi
    git clone https://github.com/fishCake07/My_Project
 
 2. **Go into My_Project folder**
+   ```bash
    cd My_Project
 
 3. **Run the application**
+   ```bash
    python Timed-Math-Challenge.py
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
