@@ -13,7 +13,7 @@ An interactive, graphical desktop application built with Python and Tkinter desi
 
 ## 🛠️ Tech Stack
 
-* **Language:** Python 3.13.7
+* **Language:** Python 3.x
 * **GUI Framework:** Tkinter (Standard Library)
 * **Libraries:** `time`, `random`
 
@@ -21,7 +21,15 @@ An interactive, graphical desktop application built with Python and Tkinter desi
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/yourusername/timed-math-challenge.git](https://github.com/yourusername/timed-math-challenge.git)
+   git clone https://github.com/fishCake07/My_Project
+
+2. **Go into My_Project folder**
+   cd My_Project
+
+3. **Run the application**
+   python Timed-Math-Challenge.py
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 2. Restaurant.py ( Unfinished )
  This Python file shows the process of ordering food using machine and updating the price of each food ordered to the Subtotal & displaying the Grand Total  including Tax on the final Receipt.
