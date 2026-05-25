@@ -37,12 +37,17 @@ class App(Tk):
         self.true_false_answer_label = Label(self, text='', font=('Helvetica', 17), fg='red', bg="#ccffff")
         self.true_false_answer_label.pack(pady=10)
 
+        # Elapsed Time Label
+        self.elapsed_time_label = Label(self, text='0.00 seconds', font=('Helvetica', 30, 'bold'), bg='#ccffff')
+        self.elapsed_time_label.pack()
+
         # Variables
         self.problem_count = 1
         self.wrong = 0
         self.correct = 0
         
         # Start the challenge
+        self.is_running = True
         self.start_time = time.time()
         self.generate_problems()
         self.update_ui()
@@ -78,24 +83,48 @@ class App(Tk):
                         self.user_entry.delete(0, END)
                         self.wrong += 1
                 else:
-                    self.end_time = time.time()
-                    # Record total time taken
-                    self.total_time = round(self.end_time - self.start_time)
+                    # Stop time
+                    self.stop()
                     self.user_entry.config(state="disabled")
                     self.submit_button.config(state="disabled")
                     messagebox.showinfo(title="Finish", 
-                                        message=f"Congratulations! You conquered the challenge in {self.total_time} seconds.\nTotal wrong attempt: {self.wrong}.\nTotal correct attempt:{10 - self.wrong}.")
+                                        message=f"Congratulations! You conquered the challenge in {self.total_time:.2f} seconds.\nTotal wrong attempt: {self.wrong}.\nTotal correct attempt:{10 - self.wrong}.")
                     print(f'Total time: {self.total_time} seconds')
                     self.destroy()
         # Catch invalid number and non number characters
         except ValueError:
             print("That's invalid number.")
             messagebox.showerror("Error", "That's invalid number.")
+
+    # Update elapsed time every 50 milliseconds
+    def update_time(self):
+        if not self.is_running:
+            self.elapsed_time = time.time() - self.start_time
+            self.elapsed_time_label.config(text=f"{self.elapsed_time:.2f} seconds")
+            self.elapsed_time_label.after(50, self.update_time)
+    # Start Time Function
+    def start(self):
+        if self.is_running:
+            self.is_running = False
+            print("START!")
+            self.update_time()
+    # Stop Time Function
+    def stop(self):
+        if not self.is_running:
+            self.is_running = True
+            print("STOP!")
+            self.total_time = time.time() - self.start_time
+            self.elapsed_time_label.config(text=f"Total time: {self.total_time:.2f} seconds")
+            print(f'Total time: {self.total_time:.2f} seconds')
+
     # Hide the true_false label
     def hide(self):
         self.true_false_answer_label.config(text='')
+        
     # Generate Math Problems
     def generate_problems(self):
+        # start time
+        self.start()
         self.left = random.randint(3, 12)
         self.right = random.randint(3, 12)
         self.operand = random.choice(["+", "-", "*", "/"])
