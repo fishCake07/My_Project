@@ -12,7 +12,7 @@ class App(Tk):
 
         # Title, size, icon
         self.title("Timed Math Challenge")
-        self.image = PhotoImage(file='assets\calculator.png')
+        self.image = PhotoImage(file='assets/calculator.png')
         self.iconphoto(True, self.image)
         self.label_title = Label(self, text="Timed Math Challenge", font=('Helvetica', 24, 'bold'), bg='#ccffff')
         self.label_title.pack(pady=20)
