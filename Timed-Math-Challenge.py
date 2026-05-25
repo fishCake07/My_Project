@@ -47,7 +47,7 @@ class App(Tk):
         self.correct = 0
         
         # Start the challenge
-        self.is_running = True
+        self.is_running = False
         self.start_time = time.time()
         self.generate_problems()
         self.update_ui()
@@ -98,20 +98,20 @@ class App(Tk):
 
     # Update elapsed time every 50 milliseconds
     def update_time(self):
-        if not self.is_running:
+        if self.is_running:
             self.elapsed_time = time.time() - self.start_time
             self.elapsed_time_label.config(text=f"{self.elapsed_time:.2f} seconds")
             self.elapsed_time_label.after(50, self.update_time)
     # Start Time Function
     def start(self):
-        if self.is_running:
-            self.is_running = False
+        if not self.is_running:
+            self.is_running = True
             print("START!")
             self.update_time()
     # Stop Time Function
     def stop(self):
-        if not self.is_running:
-            self.is_running = True
+        if self.is_running:
+            self.is_running = False
             print("STOP!")
             self.total_time = time.time() - self.start_time
             self.elapsed_time_label.config(text=f"Total time: {self.total_time:.2f} seconds")
