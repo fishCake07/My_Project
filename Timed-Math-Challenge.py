@@ -2,13 +2,16 @@ import random
 import time
 from tkinter import *
 from tkinter import messagebox
-
+from ui_utils import center_window
 class App(Tk):
     def __init__(self):
         super().__init__()
+
+        # Center Window
+        center_window(self, 800, 500)
+
         # Title, size, icon
         self.title("Timed Math Challenge")
-        self.geometry('800x500')
         self.image = PhotoImage(file='assets\calculator.png')
         self.iconphoto(True, self.image)
         self.label_title = Label(self, text="Timed Math Challenge", font=('Helvetica', 24, 'bold'), bg='#ccffff')
