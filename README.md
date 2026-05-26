@@ -1,4 +1,4 @@
-# This repo is to keep my personal coding projects.
+# Personal Coding Project
 # 1. ⏱️ Timed Math Challenge
 
 An interactive, graphical desktop application built with Python and Tkinter designed to test rapid mental math skills. 
